@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class C03_SonuclariOtomatikRaporlama {
+public class C02_SonuclariOtomatikRaporlama {
 
     @Test
     public void test01(){

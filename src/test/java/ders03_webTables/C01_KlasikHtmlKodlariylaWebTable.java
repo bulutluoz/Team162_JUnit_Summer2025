@@ -88,18 +88,50 @@ public class C01_KlasikHtmlKodlariylaWebTable extends TestBase_Each {
         System.out.println("3.sutun : " + ReusableMethods.stringListeDondur(ucuncuSutunElementleriList));
 
 
-
         //8. Tablodaki basliklari yazdirin
+        //   tum baslik elementlerini bir liste olarak kaydedelim
+        List<WebElement> baslikElementleriList = driver.findElements(By.xpath("//thead/tr/th"));
+
+        System.out.println("Tablodaki basliklar : " + ReusableMethods.stringListeDondur(baslikElementleriList));
+
+        // liste yapmak yerine, baslik satirini tek bir webelement olarak kaydedip yazdirsak ?
+
+        WebElement baslikSatiriElementi = driver.findElement(By.xpath("//thead/tr"));
+        System.out.println("Baslik satiri : " + baslikSatiriElementi.getText());
+        // bu yontemde basliklari yazdirabiliriz ama birbirinden ayirmak mumkun degil
 
 
         //9. Satir ve sutunu parametre olarak alip,
         //   hucredeki bilgiyi döndüren bir method olusturun
 
-
+        System.out.println(getCellData(1, 2)); // Electronics
+        System.out.println(getCellData(3, 3)); // $99.00
 
         //10. 4.satirdaki category degerinin "Furniture" oldugunu test edin
 
+
+        String expectedDeger = "Furniture";
+        String actualDeger = getCellData(4,2);
+
+        Assertions.assertEquals(expectedDeger,actualDeger);
+
         ReusableMethods.bekle(3);
+
+    }
+
+    public String getCellData(int satirNo, int sutunNo){
+
+        //     spesifik bir hucrenin xpath'i   : //tbody/tr[3]/td[2]
+        //     bu xpath 3.satirdaki 2.dataya aittir
+        //     bu xpath'i dinamik yapmak icin
+        //     3 yazan yere satirNo, 2 yazan yere sutunNo gelmelidir
+
+
+        String dinamikXpath = "//tbody/tr[" + satirNo + "]/td[" + sutunNo + "]";
+
+        WebElement istenenHucreElementi = driver.findElement(By.xpath(dinamikXpath));
+
+        return istenenHucreElementi.getText();
 
     }
 }

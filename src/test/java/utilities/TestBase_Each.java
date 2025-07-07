@@ -14,7 +14,7 @@ public class TestBase_Each {
 
     @BeforeEach
     public void setup(){
-        driver= new ChromeDriver();
+        driver= new FirefoxDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
